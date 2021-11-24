@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br"> 
+    <head> 
+        <meta charset="UTF-8">
+        <title>Localização de ponto para descarte</title>
+        <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../static/css/layout.css">
+	</head> 
+
+<body onload="initialize()">
+    <header>
+            <div class="caixa">
+				<h1><img src="../static/img/brasao.jpeg"></h1>
+                <nav>
+					<ul>
+						<li><a href="/">Início</a></li>
+						<li><a href="/add">Cadastrar</a></li>
+						<li><a href="/contato">Contato</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main>
+		<section class="principal">
+				<h2 class="titulo-principal">Descarte de resíduos</h2>
+
+				<img class="utensilios" src="../static/img/descartecorreto.jpeg">
+		 
+				<p>Santa Bárbara d´Oeste é referência na região em gerenciamento de resíduos. <strong>A Prefeitura, por meio da Secretaria de Meio Ambiente</strong>, mantém um programa que inclui Ecopontos e Coleta Seletiva. São 700 caçambas em média por mês de entulhos, madeiras, restos de poda e roçagem, e 450 móveis inservíveis (sofás, colchões, armários, entre outros) e materiais recicláveis recolhidos dos Ecopontos, além de uma média de 40 toneladas de lixo reciclável recolhidos por mês pela Coleta Seletiva no município.</p>
+						
+				<p id="missao"><em>Os Ecopontos são PEVs (Ponto de Entrega Voluntária) e são destinados à população que precisa descartar resíduos gerados em suas atividades ou residências. Santa Bárbara d´Oeste dispõe atualmente de <strong>Ecopontos nos bairros Jardim Gerivá, Nova Conquista, Planalto do Sol e Parque Olaria</strong>.</em></p>
+
+				<p>Os Ecopontos foram implantados em Santa Bárbara d´Oeste entre 2007 e 2008. Em 2013, quando a Administração atual assumiu a Prefeitura, a situação dos Ecopontos era crítica. A visão dos Ecopontos poderia ser comparada a lixões a céu aberto. “Eles tinham perdido seu papel de receber, triar e destinar resíduos. Eles recebiam e acumulavam. Os materiais volumosos eram compactados com uma máquina para diminuir volume e depositam mais”, <strong>comentou o secretário de Meio Ambiente, Cleber Canteiro</strong>.</p>
+			</section>
+			      
+		<section>
+				<h4 class="titulo-principal">Ecopontos</h4>
+				<img class="utensilios" src="../static/img/ecopontoscidade.jpeg">
+				<p>
+				<strong>O que são Ecopontos?</strong> São locais de entrega voluntária de pequenos volumes de entulho (até 1 m³), grandes objetos (móveis, sofás, etc.), poda de árvore e resíduos recicláveis. Nessas estruturas o munícipe pode dispor o resíduo gratuitamente em caçambas distintas para cada tipo de material.
+				</p>
+				<p>
+				<strong>Objetivo?</strong> é o de dar fim ao despejo desses tipos de itens que são descartados de modo incorreto em vias públicas, rios e terrenos baldios, que ocasiona desde problemas de saúde a enchentes, além aumentar os gastos com a limpeza pública. Materiais recicláveis (papel, papelão, vidro e alumínio) também podem ser levados para estes espaços e de lá serão reaproveitados. Para recebê-los, os Ecopontos contam com PEVs (Ponto de Entrega Voluntária de Recicláveis), caixas verdes semelhantes a contêineres instaladas em locais públicos para estimular a entrega voluntária desse tipo de material.
+				</p>
+								
+		<div>
+			<img src="../static/img/pode.png">
+			<img src="../static/img/naopode.png">
+		</div>
+		
+		</section>
+		
+		<section>
+			<div class="video">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/EL89Y6YjaMI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		</section>
+		<section>
+			<h6 class="titulo-principal">Como faço para saber qual o Ecoponto mais próximo de minha residência?</h6>
+			    				
+            <div id="map" style="width: 940px; height: 400px; margin 0 auto; padding: 3em 0"></div>
+            <div style="padding: 1em 0">
+            <input id="address" type="textbox" value="Matriz, Santa Bárbara d Oeste">
+            <input type="button" value="Digite sua Localização" onclick="codeAddress()">
+            </div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCurLwGS4rtJ5AP8QUic48eKoGUsr9tXMk&sensor=false" 
+            type="text/javascript">             
+            </script>
+            <script type="text/javascript">
+            var infowindow = new google.maps.InfoWindow();
+            var geocoder;
+            var map;
+            var marker, marcador, i;
+            var locations = [
+            ['Jardim Gerivá', -22.7580466,-47.4257433, 1],
+            ['Nova Conquista', -22.7496034,-47.4316418, 2],
+            ['Planalto do Sol', -22.7529865,-47.4239722, 3],
+            ['Parque Olaria', -22.7683239,-47.4207318, 4],
+            ];
+            function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-22.7577013, -47.42336753483181);
+            var mapOptions = {
+            zoom: 13,
+            center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            for (i = 0; i < locations.length; i++) {  
+            marcador = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+            });
+
+            google.maps.event.addListener(marcador, 'click', (function(marcador, i) {
+            return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marcador);
+            }
+            })(marcador, i));
+            }
+            }
+
+            function codeAddress() {
+            var address = document.getElementById('address').value;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+            });
+            } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+            }
+   
+            </script>
+            
+        </section>
+    </main>
+                
+    <footer>        
+		<p class="copyright">© 2021 Todos Direitos Reservados:
+		<a class="text-white" href="https://univesp.br"> Universidade Virtual do Estado de São Paulo</a></p>
+	</footer>
+	
+</body>
+</html>
