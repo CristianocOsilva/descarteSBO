@@ -2,10 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Add ponto de descarte</title>
     <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -31,8 +33,20 @@
                    value="{{ descarte.nome }}">
         </div>
         <div class="col-md-6">
-            <input type="text" name="localidade" id="localidade" placeholder="localidade" class="form-control"
-                   value="{{ descarte.localidade }}">
+            <input type="text" name="endereco" id="endereco" placeholder="endereco" class="form-control"
+                   value="{{ descarte.endereco }}">
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="numero" id="numero" placeholder="numero" class="form-control"
+                   value="{{ descarte.numero }}">
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="bairro" id="bairro" placeholder="bairro" class="form-control"
+                   value="{{ descarte.bairro }}">
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="ecoponto" id="ecoponto" placeholder="ecoponto" class="form-control"
+                   value="{{ descarte.ecoponto }}">
         </div>
         <div class="col-md-6">
             <input type="text" name="item" id="item" placeholder="item" class="form-control"

@@ -2,12 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ponto de Descarte</title>
     <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
     <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
@@ -36,7 +36,10 @@
                 <thead>
                 <tr>
                     <th>nome</th>
-                    <th>localidade</th>
+                    <th>endereço</th>
+                    <th>número</th>
+                    <th>bairro</th>
+                    <th>ecoponto</th>
                     <th>item</th>
                     <th>quantidade</th>
                 </tr>
@@ -45,7 +48,10 @@
                 {% for d in descartes %}
                 <tr>
                     <td>{{d.nome}}</td>
-                    <td>{{d.localidade}}</td>
+                    <td>{{d.endereco}}</td>
+                    <td>{{d.numero}}</td>
+                    <td>{{d.bairro}}</td>
+                    <td>{{d.ecoponto}}</td>
                     <td>{{d.item}}</td>
                     <td>{{d.quantidade}}</td>
                     <td>
